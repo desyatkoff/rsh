@@ -21,7 +21,7 @@ cargo build --release
 
 # 2. Copy Rsh binary file to the `/bin/` directory
 
-cp -v \
+sudo cp -v \
     ./target/release/rsh \
     /bin/
 

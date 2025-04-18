@@ -3,6 +3,7 @@ use std::{
     io::Write,
     process::Command
 };
+use whoami;
 
 fn get_input(query: &str) -> String {
     let mut input = String::new();
@@ -21,19 +22,33 @@ fn get_input(query: &str) -> String {
 
 fn main() {
     loop {
-        let input = get_input("> ");
+        let username = whoami::username();
+        let hostname = whoami::hostname();
+        let input = get_input(
+            &format!(
+                "{}@{} > ",
+                &username,
+                &hostname,
+            )[..]
+        );
         let mut input_parts = input
             .trim()
             .split_whitespace();
         let cmd = input_parts
             .next()
             .unwrap();
-
-        Command::new(cmd)
+        let exec_cmd = Command::new(cmd)
             .args(input_parts)
-            .spawn()
-            .unwrap()
-            .wait();
+            .spawn();
+
+        match exec_cmd {
+            Ok(mut exec_cmd) => {
+                exec_cmd.wait();
+            },
+            Err(e) => {
+                eprintln!("{}", e);
+            },
+        }
     }
 }
 

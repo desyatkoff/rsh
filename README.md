@@ -6,6 +6,23 @@
 
 ## Installation
 
+### Auto method
+
+1. **Clone the repository**
+    ```Shell
+    $ git clone https://github.com/desyatkoff/rsh.git
+    ```
+2. **Go to the repository directory**
+    ```Shell
+    $ cd rsh/
+    ```
+3. **Launch `install.sh` script**
+    ```Shell
+    sh install.sh
+    ```
+
+### Manual method
+
 1. **Clone the repository**
     ```Shell
     $ git clone https://github.com/desyatkoff/rsh.git
